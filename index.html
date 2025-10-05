@@ -40,7 +40,13 @@
           <div class="logo-placeholder" aria-hidden="true"></div>
           <a href="#top" class="brand-name">Build Yourself</a>
         </div>
-        <nav class="nav">
+        <!-- Mobile menu toggle (CSS-only, with a11y assist) -->
+        <input id="nav-toggle" type="checkbox" hidden />
+        <label for="nav-toggle" class="menu-toggle" aria-controls="site-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="bars"></span>
+        </label>
+        <nav class="nav" id="site-nav">
           <a href="#story">Story</a>
           <a href="#teach">What I Teach</a>
           <a href="#structure">Structure</a>
@@ -221,6 +227,22 @@
         }
       }, { threshold: 0.15 });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Update aria-expanded on mobile menu toggle for a11y
+      const navToggle = document.getElementById('nav-toggle');
+      const menuLabel = document.querySelector('label.menu-toggle');
+      if (navToggle && menuLabel) {
+        const syncAria = () => menuLabel.setAttribute('aria-expanded', String(navToggle.checked));
+        navToggle.addEventListener('change', syncAria);
+        syncAria();
+        // Close menu when a nav link is clicked (mobile UX)
+        document.querySelectorAll('#site-nav a').forEach(a => a.addEventListener('click', () => {
+          if (navToggle.checked) {
+            navToggle.checked = false;
+            syncAria();
+          }
+        }));
+      }
     </script>
   </body>
   </html>
