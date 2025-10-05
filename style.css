@@ -31,8 +31,16 @@ body {
 /* Section full-width bands tied to content height */
 main > section { position: relative; z-index: 0; }
 main > section::before {
-  content: ""; position: absolute; z-index: -1; inset: 0;
-  left: 50%; width: 100vw; transform: translateX(-50%);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  /* Use explicit top/bottom with centered left to avoid RTL offsets */
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: auto;
+  width: 100vw;
+  transform: translateX(-50%);
   background: var(--band-a); /* opaque band for full uniformity */
 }
 main > section:nth-of-type(even)::before { background: var(--band-b); }
@@ -44,6 +52,11 @@ h1, h2, h3, .brand-name, .footer-brand { font-family: "Space Grotesk", Inter, sa
 [dir="rtl"] body { font-family: Heebo, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .brand-name, [dir="rtl"] .footer-brand { font-family: Heebo, Inter, sans-serif; letter-spacing: 0; }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] p { text-align: right; }
+/* Ensure lists in RTL sections align and flow right */
+[dir="rtl"] .feature-list { direction: rtl; }
+[dir="rtl"] .feature-list li { text-align: right; }
+[dir="rtl"] .benefits { direction: rtl; }
+[dir="rtl"] .benefits li { text-align: right; }
 
 h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 0 0 14px; }
 h2 { font-size: clamp(24px, 3.8vw, 34px); margin: 0 0 16px; }
@@ -133,7 +146,9 @@ p { color: var(--muted); margin: 0 0 14px; }
 
 .feature-list { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
 .feature-list li { display: flex; align-items: flex-start; gap: 10px; background: var(--glass); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px 14px; }
-[dir="rtl"] .feature-list li { flex-direction: row-reverse; }
+[dir="rtl"] .feature-list li { flex-direction: row; justify-content: flex-start; }
+/* Ensure the whole Hebrew teach section flows RTL and aligns right */
+[dir="rtl"] #teach { direction: rtl; text-align: right; }
 .icon { width: 18px; height: 18px; display: inline-block; }
 
 .bonus-card { margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(52,211,153,0.12), rgba(109,227,255,0.08)); border: 1px solid rgba(52,211,153,0.35); color: var(--text); }
@@ -148,7 +163,13 @@ p { color: var(--muted); margin: 0 0 14px; }
 /* Contact */
 .contact .contact-cards { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin: 16px 0 10px; }
 .contact-card { display: flex; gap: 12px; align-items: center; text-decoration: none; color: var(--text); background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease; }
-[dir="rtl"] .contact-card { flex-direction: row-reverse; }
+[dir="rtl"] .contact-card { direction: rtl; flex-direction: row; justify-content: flex-start; text-align: right; }
+[dir="rtl"] .contact-card > div { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+[dir="rtl"] .contact-card strong { display: block; text-align: right; }
+/* Values such as phone/email/URL read LTR but align to the right edge */
+[dir="rtl"] .contact-card > div > div { direction: ltr; unicode-bidi: plaintext; text-align: right; }
+/* Right-align CTA buttons row in Hebrew */
+[dir="rtl"] .cta-row { justify-content: flex-start; direction: rtl; }
 .contact-card:hover { transform: translateY(-2px); border-color: var(--ring); box-shadow: 0 14px 28px rgba(109,227,255,0.18); }
 .icon-wrap { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; background: rgba(109,227,255,0.1); color: var(--primary); }
 .cta-row { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
