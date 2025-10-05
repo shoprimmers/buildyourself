@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Build Yourself — Learn to Build Your Website</title>
+    <meta name="description" content="Learn to build your own professional website in less than a week — no coding background required. Step-by-step guidance by Daniel Rimmer." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- SVG icon sprites for inline use -->
+    <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+      <defs>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.3 22 2 13.7 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5L4 8V6l8 5 8-5v2z"/>
+        </symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2zm7.93 9h-3.12a15.6 15.6 0 00-.81-4.07A8.02 8.02 0 0119.93 11zM12 4a13.68 13.68 0 011.94 5H10.06A13.68 13.68 0 0112 4zM4.07 11h3.12A15.6 15.6 0 008 6.93 8.02 8.02 0 014.07 11zM7.19 13H4.07A8.02 8.02 0 008 17.07 15.6 15.6 0 017.19 13zM12 20a13.68 13.68 0 01-1.94-5h3.88A13.68 13.68 0 0112 20zm3.81-7a15.6 15.6 0 01.81 4.07A8.02 8.02 0 0019.93 13zm-9.62 0h10.62a13.65 13.65 0 00-.99-4H7.18a13.65 13.65 0 00-.99 4z"/>
+        </symbol>
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M.057 24l1.687-6.163A11.867 11.867 0 0112.02.003c6.568 0 11.9 5.332 11.9 11.9 0 6.568-5.332 11.9-11.9 11.9a11.87 11.87 0 01-6.082-1.68L.057 24zM6.6 20.13c1.8 1.07 3.83 1.64 5.93 1.64 6.002 0 10.88-4.878 10.88-10.88S18.532.01 12.53.01 1.65 4.888 1.65 10.89c0 2.18.63 4.27 1.82 6.08l-.12.44L2.4 22l4.2-1.13zM8.78 7.37c-.13-.29-.27-.3-.4-.3h-.34a.78.78 0 00-.56.26c-.19.2-.74.72-.74 1.76s.76 2.04.86 2.18c.1.13 1.46 2.33 3.56 3.18 1.76.69 2.12.56 2.5.52.38-.04 1.23-.5 1.4-.98.17-.48.17-.9.12-.98-.05-.08-.19-.13-.4-.22s-1.23-.6-1.42-.67c-.19-.07-.33-.1-.47.1-.14.2-.54.67-.66.8-.12.13-.24.15-.45.05-.21-.1-.88-.33-1.67-1.05a6.31 6.31 0 01-1.17-1.45c-.12-.2-.01-.31.09-.41.09-.09.21-.24.31-.36.1-.12.13-.2.19-.33.06-.13.03-.25-.01-.35-.04-.1-.43-1.03-.59-1.41z"/>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo-placeholder" aria-hidden="true"></div>
+          <a href="#top" class="brand-name">Build Yourself</a>
+        </div>
+        <nav class="nav">
+          <a href="#story">Story</a>
+          <a href="#teach">What I Teach</a>
+          <a href="#structure">Structure</a>
+          <a href="#why">Why</a>
+          <a href="#about">About</a>
+          <a href="#guarantee">Guarantee</a>
+          <a href="#contact" class="btn btn-primary">Start Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero container reveal">
+        <div class="hero-content">
+          <h1>
+            Photographer With No Experience In Coding, Using a Six-Year-Old Computer, Built a Full, Professional Website for His Business in Just Five Days…
+          </h1>
+          <p class="lead">…And He Is Not a Genius — I Know Him. Sounds impossible? Meet <strong>Yair Rosenberg</strong>.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Build Your Site This Week</a>
+            <a href="#story" class="btn btn-ghost">Read the story</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true"></div>
+      </section>
+
+      <section id="story" class="section container reveal">
+        <div class="content-card">
+          <p>
+            Yair had dreamed of building a website for his business for years. But like many people, he thought: “It’s too complicated… I’m not a computer person… maybe one day I’ll pay someone to do it for me.” He believed it would take months or even years to learn.
+          </p>
+          <p>
+            Then his friend told him something that changed everything. That friend was me — <strong>Daniel Rimmer</strong>.
+          </p>
+          <p>
+            I showed Yair how he could build his own professional website in less than a week. After just a few hours of guidance, setting up the right tools and accounts, Yair did it — all by himself. Today, his website doesn’t just look professional… it looks better than many built by web developers.
+          </p>
+          <p class="check-it">
+            👉 Check it yourself: <a href="https://www.YairRosenberg.co.il" target="_blank" rel="noopener">www.YairRosenberg.co.il</a>
+          </p>
+        </div>
+      </section>
+
+      <section id="teach" class="section container reveal">
+        <h2>What I Teach</h2>
+        <p>
+          I teach people how to build their own websites from scratch — even if they have zero background in computers or coding. All you need is a regular computer, a few hours a day, and my step-by-step guidance. Here’s what you’ll learn:
+        </p>
+        <ul class="feature-list">
+          <li><svg class="icon"><use href="#icon-check"/></svg> How to build your website from scratch — even with no experience.</li>
+          <li><svg class="icon"><use href="#icon-check"/></svg> How to install the same software professionals use.</li>
+          <li><svg class="icon"><use href="#icon-check"/></svg> How to buy and connect your domain to your website.</li>
+          <li><svg class="icon"><use href="#icon-check"/></svg> How to create your own professional email for your business — and pay very little for it yearly.</li>
+          <li><svg class="icon"><use href="#icon-check"/></svg> How to host your website online — for free.</li>
+          <li><svg class="icon"><use href="#icon-check"/></svg> The basics of coding, so you truly understand what you’re building.</li>
+        </ul>
+        <div class="bonus-card">
+          <strong>🎁 Bonus Lesson:</strong> You’ll also learn the power of words — how to write text that sells your business both online and offline.
+        </div>
+      </section>
+
+      <section id="structure" class="section container reveal">
+        <h2>Course Structure</h2>
+        <p>This program includes 4 classes, each lasting 2 hours. You can choose the learning format that suits you best:</p>
+        <div class="options">
+          <div class="option">
+            <h3>🏫 In-person class</h3>
+            <p>Jerusalem area</p>
+          </div>
+          <div class="option">
+            <h3>💻 Live on Zoom</h3>
+            <p>Interactive, guided sessions</p>
+          </div>
+          <div class="option">
+            <h3>🏠 Private at your home</h3>
+            <p>For an additional fee, I can come directly to your home for private, one-on-one lessons.</p>
+          </div>
+        </div>
+        <p>Whichever option you choose, you’ll get clear, step-by-step, practical instruction that’s easy to follow — even for complete beginners.</p>
+      </section>
+
+      <section id="why" class="section container reveal">
+        <h2>Why This Course is a Game Changer</h2>
+        <p>
+          Most people waste four years in university studying coding — or spend their money hiring a web developer who takes months to deliver a mediocre website that doesn’t even match their vision. They end up losing both time and money on something they don’t really like.
+        </p>
+        <p><strong>With my guidance, you’ll:</strong></p>
+        <ul class="benefits">
+          <li>💪 Build your own website in less than a week.</li>
+          <li>💪 Save thousands of shekels.</li>
+          <li>💪 Learn how to maintain it yourself — no need to pay anyone again.</li>
+        </ul>
+        <p>When you know how to build and manage your own website, you’re not just buying the fish — you’re getting the fishing rod. 🎣</p>
+      </section>
+
+      <section id="about" class="section container reveal">
+        <h2>Who Am I?</h2>
+        <p>
+          My name is <strong>Daniel Rimmer</strong>. I’m a business owner, not a programmer. I created my own brand — <strong>Rimmer’s</strong> — where I sell handmade Italian silk ties. And I built my entire website by myself. You can visit it to see what’s possible: <a href="https://www.Rimmers.shop" target="_blank" rel="noopener">www.Rimmers.shop</a>. If I could do it — without a computer degree — so can you.
+        </p>
+        <p>
+          This program is for anyone who wants to grow his parnassah (livelihood) without wasting years or unnecessary money. It’s for photographers, craftsmen, teachers, tutors, small business owners — anyone who wants to take control of his business online.
+        </p>
+      </section>
+
+      <section id="guarantee" class="section container reveal">
+        <h2>100% Satisfaction Guaranteed</h2>
+        <p>
+          Try the first class — completely risk-free. If you don’t like it for any reason, you get your money back. No questions asked. That’s how confident I am in what you’ll achieve.
+        </p>
+      </section>
+
+      <section id="contact" class="section container reveal contact">
+        <h2>Ready to Start?</h2>
+        <p>Your business deserves to be online. Don’t wait another year thinking it’s “too hard.” Contact me today to learn about prices and upcoming classes:</p>
+        <div class="contact-cards">
+          <a class="contact-card" href="tel:+972533191655">
+            <span class="icon-wrap"><svg class="icon"><use href="#icon-phone"/></svg></span>
+            <div>
+              <strong>Phone</strong>
+              <div>053-319-1655</div>
+            </div>
+          </a>
+          <a class="contact-card" href="mailto:contact@danielrimmer.com">
+            <span class="icon-wrap"><svg class="icon"><use href="#icon-mail"/></svg></span>
+            <div>
+              <strong>Email</strong>
+              <div>contact@danielrimmer.com</div>
+            </div>
+          </a>
+          <a class="contact-card" href="https://www.DanielRimmer.com" target="_blank" rel="noopener">
+            <span class="icon-wrap"><svg class="icon"><use href="#icon-globe"/></svg></span>
+            <div>
+              <strong>Website</strong>
+              <div>www.DanielRimmer.com</div>
+            </div>
+          </a>
+          <a class="contact-card" href="https://wa.me/972533191655" target="_blank" rel="noopener">
+            <span class="icon-wrap"><svg class="icon"><use href="#icon-whatsapp"/></svg></span>
+            <div>
+              <strong>WhatsApp</strong>
+              <div>Message me on WhatsApp</div>
+            </div>
+          </a>
+        </div>
+        <div class="cta-row">
+          <a href="https://wa.me/972533191655" target="_blank" rel="noopener" class="btn btn-primary">Chat on WhatsApp</a>
+          <a href="mailto:contact@danielrimmer.com" class="btn btn-ghost">Email Me</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">Build Yourself</div>
+        <div class="footer-links">
+          <a href="tel:+972533191655">053-319-1655</a>
+          <span>•</span>
+          <a href="mailto:contact@danielrimmer.com">contact@danielrimmer.com</a>
+          <span>•</span>
+          <a href="https://www.DanielRimmer.com" target="_blank" rel="noopener">www.DanielRimmer.com</a>
+        </div>
+      </div>
+    </footer>
+
+    <a class="whatsapp-fab" href="https://wa.me/972533191655" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg class="icon"><use href="#icon-whatsapp"/></svg>
+    </a>
+
+    <script>
+      // Reveal on scroll: adds .visible to .reveal elements
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+  </body>
+  </html>
