@@ -63,6 +63,13 @@
     </header>
 
     <main id="top">
+      <!-- סרטון יצירתי במסך מלא בראש העמוד -->
+      <section id="creativity-hero" class="creativity-hero reveal visible" aria-label="סרטון יצירתיות">
+        <video class="creativity-video" autoplay muted loop playsinline preload="auto">
+          <source src="images/creativity-video.mp4" type="video/mp4" />
+        </video>
+      </section>
+
       <section class="hero container reveal">
         <div class="hero-content">
           <h1>
@@ -90,13 +97,6 @@
           <p class="check-it">👉 תבדקו בעצמכם: <a href="https://www.YairRosenberg.co.il" target="_blank" rel="noopener">www.YairRosenberg.co.il</a></p>
         </div>
       </section>
-
-      <!-- סרטון יצירתי במסך מלא -->
-      <div id="creativity" class="section reveal visible">
-        <video class="creativity-video" autoplay muted loop playsinline preload="auto">
-          <source src="images/creativity-video.mp4" type="video/mp4" />
-        </video>
-      </div>
 
       <section id="teach" class="section container reveal">
         <h2>מה אני מלמד</h2>
@@ -253,6 +253,21 @@
           }
         }));
       }
+
+      // שקיפות כותרת עליונה: שקופה יותר למעלה ומתקהה בגלילה
+      const headerEl = document.querySelector('.site-header');
+      const updateHeader = () => {
+        if (!headerEl) return;
+        if (window.scrollY > 16) {
+          document.body.classList.remove('at-top');
+          headerEl.classList.add('scrolled');
+        } else {
+          document.body.classList.add('at-top');
+          headerEl.classList.remove('scrolled');
+        }
+      };
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
     </script>
   </body>
   </html>
