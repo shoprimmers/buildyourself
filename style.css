@@ -48,6 +48,17 @@ main > section:nth-of-type(even)::before { background: var(--band-b); }
 /* Media elements scale down nicely */
 img, video { max-width: 100%; height: auto; }
 
+/* Full-bleed creativity video (between Story and Teach) */
+.creativity-video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16/9;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: #000;
+}
+
 h1, h2, h3, .brand-name, .footer-brand { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: 0.2px; }
 [dir="rtl"] body { font-family: Heebo, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .brand-name, [dir="rtl"] .footer-brand { font-family: Heebo, Inter, sans-serif; letter-spacing: 0; }
