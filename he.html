@@ -75,7 +75,9 @@
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <img src="images/photographer.png" alt="צלם שבונה אתר בעצמו" class="hero-image" />
+          <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="images/photographer.png">
+            <source src="images/video-photographer.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
@@ -107,9 +109,33 @@
         <h2>מבנה הקורס</h2>
         <p>הקורס כולל 4 שיעורים בלבד, כל שיעור נמשך שעתיים. אתם יכולים לבחור איך ללמוד:</p>
         <div class="options">
-          <div class="option"><h3>🏫 שיעור פרונטלי</h3><p>באזור ירושלים בקבוצה קטנה.</p></div>
-          <div class="option"><h3>💻 שיעור חי בזום</h3><p>עם ליווי ושיתוף מסך.</p></div>
-          <div class="option"><h3>🏠 שיעור אישי בבית</h3><p>אני מגיע אליכם אחד־על־אחד (בתוספת תשלום).</p></div>
+          <div class="option">
+            <h3>🏫 שיעור פרונטלי</h3>
+            <p>באזור ירושלים בקבוצה קטנה.</p>
+            <div id="InPersonClass">
+              <video class="zoom-video" autoplay muted loop playsinline preload="auto">
+                <source src="images/jerusalem-classes.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <div class="option">
+            <h3>💻 שיעור חי בזום</h3>
+            <p>עם ליווי ושיתוף מסך.</p>
+            <div id="LiveOnZoom">
+              <video class="zoom-video" autoplay muted loop playsinline preload="auto">
+                <source src="images/zoom-lessoms.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <div class="option">
+            <h3>🏠 שיעור אישי בבית</h3>
+            <p>אני מגיע אליכם אחד־על־אחד (בתוספת תשלום).</p>
+            <div id="PrivateAtHome">
+              <video class="zoom-video" autoplay muted loop playsinline preload="auto">
+                <source src="images/private-classes.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -223,4 +249,3 @@
     </script>
   </body>
   </html>
-
