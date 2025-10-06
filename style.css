@@ -161,6 +161,7 @@ p { color: var(--muted); margin: 0 0 14px; }
 /* Zoom sample media inside the Zoom option */
 #LiveOnZoom { margin-top: 10px; }
 .InPersonClass, #InPersonClass { margin-top: 10px; }
+#PrivateAtHome { margin-top: 10px; }
 .zoom-video {
   width: 100%;
   aspect-ratio: 16/9;
