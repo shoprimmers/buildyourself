@@ -63,13 +63,6 @@
     </header>
 
     <main id="top">
-      <!-- Top-of-page full-bleed Creativity hero -->
-      <section id="creativity-hero" class="creativity-hero reveal visible" aria-label="Creativity video">
-        <video class="creativity-video" autoplay muted loop playsinline preload="auto">
-          <source src="images/creativity-video.mp4" type="video/mp4" />
-        </video>
-      </section>
-
       <section class="hero container reveal">
         <div class="hero-content">
           <h1>
@@ -83,7 +76,7 @@
         </div>
         <div class="hero-visual">
           <video class="hero-media" autoplay muted loop playsinline preload="auto">
-            <source src="images/video-photographer.mp4" type="video/mp4" />
+            <source src="images/photographer-creating-website.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
@@ -274,20 +267,7 @@
         }));
       }
 
-      // Header transparency: lighter at top, darker once scrolled
-      const headerEl = document.querySelector('.site-header');
-      const updateHeader = () => {
-        if (!headerEl) return;
-        if (window.scrollY > 16) {
-          document.body.classList.remove('at-top');
-          headerEl.classList.add('scrolled');
-        } else {
-          document.body.classList.add('at-top');
-          headerEl.classList.remove('scrolled');
-        }
-      };
-      updateHeader();
-      window.addEventListener('scroll', updateHeader, { passive: true });
+      // (header transparency behavior removed — restored to original)
     </script>
   </body>
   </html>

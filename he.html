@@ -63,13 +63,6 @@
     </header>
 
     <main id="top">
-      <!-- סרטון יצירתי במסך מלא בראש העמוד -->
-      <section id="creativity-hero" class="creativity-hero reveal visible" aria-label="סרטון יצירתיות">
-        <video class="creativity-video" autoplay muted loop playsinline preload="auto">
-          <source src="images/creativity-video.mp4" type="video/mp4" />
-        </video>
-      </section>
-
       <section class="hero container reveal">
         <div class="hero-content">
           <h1>
@@ -83,7 +76,7 @@
         </div>
         <div class="hero-visual" aria-hidden="true">
           <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="images/photographer.png">
-            <source src="images/video-photographer.mp4" type="video/mp4" />
+            <source src="images/photographer-creating-website.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
@@ -254,20 +247,7 @@
         }));
       }
 
-      // שקיפות כותרת עליונה: שקופה יותר למעלה ומתקהה בגלילה
-      const headerEl = document.querySelector('.site-header');
-      const updateHeader = () => {
-        if (!headerEl) return;
-        if (window.scrollY > 16) {
-          document.body.classList.remove('at-top');
-          headerEl.classList.add('scrolled');
-        } else {
-          document.body.classList.add('at-top');
-          headerEl.classList.remove('scrolled');
-        }
-      };
-      updateHeader();
-      window.addEventListener('scroll', updateHeader, { passive: true });
+      // (הוסרה התנהגות שקיפות כותרת עליונה — חזרה למקור)
     </script>
   </body>
   </html>
