@@ -145,9 +145,15 @@ p { color: var(--muted); margin: 0 0 14px; }
 .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-areas: "content visual"; gap: 40px; padding: 80px 0 44px; align-items: center; }
 .hero-content { grid-area: content; }
 .hero-visual { grid-area: visual; }
-[dir="rtl"] .hero { grid-template-columns: 0.85fr 1.15fr; grid-template-areas: "visual content"; }
+[dir="rtl"] .hero { grid-template-columns: 1fr; grid-template-areas: "visual" "content"; }
 .hero .lead { font-size: 18px; color: var(--text); }
 .hero-cta { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+/* Hide hero heading/lead until typing starts */
+.hero h1:not([data-typed="true"]),
+.hero .lead:not([data-typed="true"]) {
+  color: transparent;
+  visibility: hidden; /* prevents pre-flash */
+}
 .hero-visual {
   min-height: 320px; border-radius: 20px; position: relative; overflow: hidden;
   background: linear-gradient(180deg, rgba(109, 227, 255, 0.08), rgba(160, 127, 255, 0.08));
@@ -231,8 +237,43 @@ p { color: var(--muted); margin: 0 0 14px; }
 [dir="rtl"] .whatsapp-fab { left: 20px; right: auto; }
 
 /* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 2.025s ease, transform 2.025s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Cascade reveal for the Teach section (EN + HE) */
+#teach h2,
+#teach > p,
+#teach .feature-list li,
+#teach .bonus-card {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 2.7s ease, transform 2.7s ease;
+  will-change: opacity, transform;
+}
+
+#teach.reveal.visible h2 { opacity: 1; transform: none; transition-delay: .0s; }
+#teach.reveal.visible > p { opacity: 1; transform: none; transition-delay: .432s; }
+
+/* Stagger feature bullets */
+#teach.reveal.visible .feature-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: .648s; }
+#teach.reveal.visible .feature-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 1.08s; }
+#teach.reveal.visible .feature-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 1.512s; }
+#teach.reveal.visible .feature-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 1.944s; }
+#teach.reveal.visible .feature-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 2.376s; }
+#teach.reveal.visible .feature-list li:nth-child(6) { opacity: 1; transform: none; transition-delay: 2.808s; }
+
+#teach.reveal.visible .bonus-card { opacity: 1; transform: none; transition-delay: 3.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+  #teach h2,
+  #teach > p,
+  #teach .feature-list li,
+  #teach .bonus-card,
+  #teach.reveal.visible h2,
+  #teach.reveal.visible > p,
+  #teach.reveal.visible .feature-list li,
+  #teach.reveal.visible .bonus-card { transition: none; transform: none; opacity: 1; }
+}
 
 /* (creativity hero removed) */
 

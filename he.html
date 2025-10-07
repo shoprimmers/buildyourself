@@ -228,6 +228,10 @@
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            // הקלדה חיה בכותרת כשחלק ה־hero נחשף
+            if (entry.target.classList && entry.target.classList.contains('hero')) {
+              startHeroTypewriter();
+            }
             observer.unobserve(entry.target);
           }
         }
@@ -251,6 +255,99 @@
       }
 
       // (הוסרה התנהגות שקיפות כותרת עליונה — חזרה למקור)
+
+      // אפקט הקלדה לכותרת הראשית <h1> ולמשפט שאחריה, ואז הצגת הכפתורים
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function startHeroTypewriter() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const h1 = hero.querySelector('h1');
+        const lead = hero.querySelector('.lead');
+        const cta = hero.querySelector('.hero-cta');
+        if (!h1 || h1.dataset.typed === 'true') return;
+
+        // מסתיר את הכפתורים עד שסיימנו להקליד את שתי השורות
+        if (cta) {
+          cta.style.opacity = '0';
+          cta.style.transform = 'translateY(6px)';
+          cta.style.transition = 'opacity .35s ease, transform .35s ease';
+        }
+
+        const hardPunct = new Set(['.', '!', '?', '…', '—']);
+        const softPunct = new Set([',', ';', ':']);
+        const baseDelay = 42; // 30% יותר מהיר
+        const extraPunctDelay = 175;
+
+        const typeInto = (el, fullText) => new Promise((resolve) => {
+          const reserved = el.offsetHeight;
+          el.style.minHeight = reserved + 'px';
+          const originalHTML = el.innerHTML;
+          el.dataset.typed = 'true';
+          el.textContent = '';
+          let i = 0;
+          const step = () => {
+            if (i >= fullText.length) {
+              if (originalHTML && el !== h1) {
+                el.innerHTML = originalHTML;
+              }
+              resolve();
+              return;
+            }
+            const ch = fullText[i++];
+            el.textContent += ch;
+            let delay = baseDelay;
+            if (hardPunct.has(ch)) delay += extraPunctDelay;
+            else if (softPunct.has(ch)) delay += Math.floor(extraPunctDelay * 0.5);
+            setTimeout(step, delay);
+          };
+          step();
+        });
+
+        if (prefersReducedMotion) {
+          h1.dataset.typed = 'true';
+          if (lead) lead.dataset.typed = 'true';
+          if (cta) { cta.style.opacity = '1'; cta.style.transform = 'none'; }
+          return; // ללא אנימציה
+        }
+
+        h1.dataset.typed = 'true';
+        const h1Text = h1.textContent;
+        const leadText = lead ? lead.textContent : '';
+
+        typeInto(h1, h1Text)
+          .then(() => lead ? typeInto(lead, leadText) : Promise.resolve())
+          .then(() => {
+            if (cta) {
+              cta.style.opacity = '1';
+              cta.style.transform = 'none';
+            }
+          });
+      }
+
+      // אם ה־hero כבר בתוך תצוגה בעת הטעינה — נפעיל מיד
+      window.addEventListener('load', () => {
+        const heroEl = document.querySelector('.hero');
+        if (!heroEl) return;
+        const rect = heroEl.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) startHeroTypewriter();
+      });
+
+      // גלילה חלקה כך שבתחתית המסך יהיה סוף מקטע הסיפור בלבד
+      const storyBtn = document.querySelector('.hero-cta a[href="#story"]');
+      if (storyBtn) {
+        storyBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const el = document.getElementById('story');
+          if (!el) return;
+          const rect = el.getBoundingClientRect();
+          const absTop = window.pageYOffset + rect.top;
+          const absBottom = absTop + rect.height;
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          const target = Math.max(0, Math.min(absBottom - window.innerHeight, maxScroll));
+          window.scrollTo({ top: target, behavior: 'smooth' });
+        });
+      }
     </script>
   </body>
   </html>

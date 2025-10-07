@@ -248,6 +248,10 @@
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            // Trigger typewriter when hero section reveals
+            if (entry.target.classList && entry.target.classList.contains('hero')) {
+              startHeroTypewriter();
+            }
             observer.unobserve(entry.target);
           }
         }
@@ -271,6 +275,104 @@
       }
 
       // (header transparency behavior removed — restored to original)
+
+      // Typewriter effect for hero <h1> and lead, then reveal CTAs
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function startHeroTypewriter() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const h1 = hero.querySelector('h1');
+        const lead = hero.querySelector('.lead');
+        const cta = hero.querySelector('.hero-cta');
+        if (!h1 || h1.dataset.typed === 'true') return;
+
+        // Hide CTAs until both lines have finished typing
+        if (cta) {
+          cta.style.opacity = '0';
+          cta.style.transform = 'translateY(6px)';
+          cta.style.transition = 'opacity .35s ease, transform .35s ease';
+        }
+
+        // Helper: type text into an element with punctuation pauses
+        const hardPunct = new Set(['.', '!', '?', '…', '—']);
+        const softPunct = new Set([',', ';', ':']);
+        const baseDelay = 42; // 30% faster than original
+        const extraPunctDelay = 175;
+
+        const typeInto = (el, fullText) => new Promise((resolve) => {
+          // Reserve height to avoid layout jump
+          const reserved = el.offsetHeight;
+          el.style.minHeight = reserved + 'px';
+          // Use plain text while typing; restore formatting later if needed
+          const originalHTML = el.innerHTML;
+          el.dataset.typed = 'true';
+          el.textContent = '';
+          let i = 0;
+          const step = () => {
+            if (i >= fullText.length) {
+              // Restore original HTML if it matches the same text content
+              if (originalHTML && el !== h1) {
+                el.innerHTML = originalHTML;
+              }
+              resolve();
+              return;
+            }
+            const ch = fullText[i++];
+            el.textContent += ch;
+            let delay = baseDelay;
+            if (hardPunct.has(ch)) delay += extraPunctDelay;
+            else if (softPunct.has(ch)) delay += Math.floor(extraPunctDelay * 0.5);
+            setTimeout(step, delay);
+          };
+          step();
+        });
+
+        if (prefersReducedMotion) {
+          h1.dataset.typed = 'true';
+          if (lead) lead.dataset.typed = 'true';
+          if (cta) { cta.style.opacity = '1'; cta.style.transform = 'none'; }
+          return; // show full text instantly (no typing)
+        }
+
+        h1.dataset.typed = 'true';
+        const h1Text = h1.textContent;
+        const leadText = lead ? lead.textContent : '';
+
+        // Sequence: H1 -> lead -> show CTAs
+        typeInto(h1, h1Text)
+          .then(() => lead ? typeInto(lead, leadText) : Promise.resolve())
+          .then(() => {
+            if (cta) {
+              cta.style.opacity = '1';
+              cta.style.transform = 'none';
+            }
+          });
+      }
+
+      // If hero is already in view on load, kick it off
+      window.addEventListener('load', () => {
+        const heroEl = document.querySelector('.hero');
+        if (!heroEl) return;
+        const rect = heroEl.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) startHeroTypewriter();
+      });
+
+      // Smooth scroll so the story section bottom aligns with viewport bottom
+      const storyBtn = document.querySelector('.hero-cta a[href="#story"]');
+      if (storyBtn) {
+        storyBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const el = document.getElementById('story');
+          if (!el) return;
+          const rect = el.getBoundingClientRect();
+          const absTop = window.pageYOffset + rect.top;
+          const absBottom = absTop + rect.height;
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          const target = Math.max(0, Math.min(absBottom - window.innerHeight, maxScroll));
+          window.scrollTo({ top: target, behavior: 'smooth' });
+        });
+      }
     </script>
   </body>
   </html>
