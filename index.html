@@ -63,8 +63,12 @@
     </header>
 
     <main id="top">
-      <section class="hero container reveal">
-        <div class="hero-content">
+      <section class="hero reveal">
+        <video class="section-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="images/photographer-creating-website.mp4" type="video/mp4" />
+        </video>
+        <div class="container">
+          <div class="hero-content">
           <h1>
             Photographer With No Experience In Coding, Using a Six-Year-Old Computer, Built a Full, Professional Website for His Business in Just Five Days…
           </h1>
@@ -73,11 +77,7 @@
             <a href="#contact" class="btn btn-primary">Build Your Site This Week</a>
             <a href="#story" class="btn btn-ghost">Read the story</a>
           </div>
-        </div>
-        <div class="hero-visual">
-          <video class="hero-media" autoplay muted loop playsinline preload="auto">
-            <source src="images/photographer-creating-website.mp4" type="video/mp4" />
-          </video>
+          </div>
         </div>
       </section>
 
@@ -244,6 +244,28 @@
 
     <script>
       // Reveal on scroll: adds .visible to .reveal elements
+      // Also handle header transparency over the hero
+      (function headerMergeControl(){
+        const header = document.querySelector('.site-header');
+        const threshold = 8; // px scrolled before showing header background
+        const setHeaderVar = () => {
+          if (!header) return;
+          const h = header.getBoundingClientRect().height;
+          document.documentElement.style.setProperty('--header-h', h + 'px');
+        };
+        const update = () => {
+          if (!header) return;
+          if (window.scrollY <= threshold) header.classList.add('is-merged');
+          else header.classList.remove('is-merged');
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('load', () => { setHeaderVar(); update(); });
+        window.addEventListener('resize', setHeaderVar);
+        setHeaderVar();
+        update();
+      })();
+
+      // IntersectionObserver for reveal effects
       const observer = new IntersectionObserver((entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {

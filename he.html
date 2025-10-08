@@ -63,8 +63,12 @@
     </header>
 
     <main id="top">
-      <section class="hero container reveal">
-        <div class="hero-content">
+      <section class="hero reveal">
+        <video class="section-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="images/photographer-creating-website.mp4" type="video/mp4" />
+        </video>
+        <div class="container">
+          <div class="hero-content">
           <h1>
             צלם בלי שום ניסיון בתכנות, עם מחשב בן שש שנים, בנה אתר מקצועי ומרשים לעסק שלו — תוך חמישה ימים בלבד…
           </h1>
@@ -73,11 +77,7 @@
             <a href="#contact" class="btn btn-primary">בנו את האתר השבוע</a>
             <a href="#story" class="btn btn-ghost">קראו את הסיפור</a>
           </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="images/photographer.png">
-            <source src="images/photographer-creating-website.mp4" type="video/mp4" />
-          </video>
+          </div>
         </div>
       </section>
 
@@ -223,6 +223,27 @@
     </a>
 
     <script>
+      // Header merge with hero and reveal on scroll
+      (function headerMergeControl(){
+        const header = document.querySelector('.site-header');
+        const threshold = 8; // px scrolled before showing header background
+        const setHeaderVar = () => {
+          if (!header) return;
+          const h = header.getBoundingClientRect().height;
+          document.documentElement.style.setProperty('--header-h', h + 'px');
+        };
+        const update = () => {
+          if (!header) return;
+          if (window.scrollY <= threshold) header.classList.add('is-merged');
+          else header.classList.remove('is-merged');
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('load', () => { setHeaderVar(); update(); });
+        window.addEventListener('resize', setHeaderVar);
+        setHeaderVar();
+        update();
+      })();
+
       // Reveal on scroll
       const observer = new IntersectionObserver((entries) => {
         for (const entry of entries) {
