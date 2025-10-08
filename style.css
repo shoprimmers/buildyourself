@@ -111,6 +111,26 @@ p { color: var(--muted); margin: 0 0 14px; }
 .nav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
 .nav a:hover { color: var(--text); }
 
+/* Header nav: subtle 5% grow on specific links (EN + HE) */
+.nav a[href="#story"],
+.nav a[href="#teach"],
+.nav a[href="#structure"],
+.nav a[href="#why"],
+.nav a[href="#about"],
+.nav a[href="#guarantee"] {
+  display: inline-block; /* needed for transform */
+  transform-origin: center; 
+  transition: transform .12s ease, color .2s ease; /* keep existing hover color */
+}
+.nav a[href="#story"]:hover,
+.nav a[href="#teach"]:hover,
+.nav a[href="#structure"]:hover,
+.nav a[href="#why"]:hover,
+.nav a[href="#about"]:hover,
+.nav a[href="#guarantee"]:hover {
+  transform: scale(1.05);
+}
+
 /* Language switch */
 .lang-switch { display: inline-flex; align-items: center; gap: 8px; margin-inline-start: 6px; }
 .lang-switch a { color: var(--text); text-decoration: none; font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.16); }

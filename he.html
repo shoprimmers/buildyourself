@@ -156,7 +156,7 @@
 
       <section id="about" class="section container reveal">
         <h2>מי אני</h2>
-        <p>שמי <strong>דניאל רימר</strong>. אני בעל עסק, לא מתכנת. הקמתי את המותג שלי — <strong>Rimmer’s</strong> — שבו אני מוכר עניבות משי איטלקיות בעבודת יד. ואת כל האתר שלי — בניתי בעצמי, מההתחלה. תוכלו לראות בעצמכם: <a href="https://www.Rimmers.shop" target="_blank" rel="noopener">www.Rimmers.shop</a>. אם אני הצלחתי — בלי תואר במדעי המחשב — גם אתם יכולים.</p>
+        <p>אני מעצב אתרים אוטודידקט, בעל עסק, ולשעבר מנהל סניף של חברה בינלאומית מסין, בברזיל. עבדתי גם במכירות B2B במשך כארבע שנים. כיום אני הבעלים של חנות עניבות בירושלים בשם Rimmer’s — שבה אני מוכר עניבות משי בעבודת יד מאיטליה. את כל האתר שלי בניתי בעצמי. תוכלו לבקר בו כדי לראות מה אפשרי: <a href="https://www.Rimmers.shop" target="_blank" rel="noopener">www.rimmers.shop</a>אם אני הצלחתי — בלי תואר במדעי המחשב — גם אתם יכולים.</p>
         <p>הקורס הזה מתאים לכל מי שרוצה לפתח את הפרנסה שלו בלי לבזבז שנים או כסף מיותר. לצלמים, בעלי מלאכה, מורים, מדריכים, בעלי עסקים קטנים — לכל אחד שרוצה לקחת שליטה על העסק שלו באינטרנט.</p>
       </section>
 
@@ -231,13 +231,6 @@
             // הקלדה חיה בכותרת כשחלק ה־hero נחשף
             if (entry.target.classList && entry.target.classList.contains('hero')) {
               startHeroTypewriter();
-            }
-            // לאחר שהקסקדה של מקטע "מה אני מלמד" מסתיימת — נאפשר הגדלה במעבר עכבר
-            if (entry.target.id === 'teach') {
-              const cascadeEndMs = 3360 + 2700 + 200; // השהיה אחרונה + משך + מרווח ביטחון
-              setTimeout(() => {
-                entry.target.classList.add('interactive');
-              }, cascadeEndMs);
             }
             observer.unobserve(entry.target);
           }
