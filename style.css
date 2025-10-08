@@ -130,6 +130,12 @@ p { color: var(--muted); margin: 0 0 14px; }
   transition: transform .12s ease;
   transform-origin: center;
 }
+
+/* Ensure space characters stay as gaps and never scale */
+.nav .char.space { min-width: 0.33em; }
+.nav .char.space:hover,
+.nav .char.space.is-hover,
+.nav .char.space.is-near { transform: none !important; }
 .nav a[href="#story"] .char:hover,
 .nav a[href="#teach"] .char:hover,
 .nav a[href="#structure"] .char:hover,

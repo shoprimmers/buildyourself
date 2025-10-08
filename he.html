@@ -232,6 +232,14 @@
             if (entry.target.classList && entry.target.classList.contains('hero')) {
               startHeroTypewriter();
             }
+            // לאחר סיום אפקט החשיפה המדורג בקטע "מה אני מלמד",
+            // נוסיף מחלקה שמאפשרת הגדלה קלה במעבר עכבר (כמו באנגלית)
+            if (entry.target.id === 'teach') {
+              const cascadeEndMs = 3360 + 2700 + 200; // השהיה אחרונה + משך + מרווח
+              setTimeout(() => {
+                entry.target.classList.add('interactive');
+              }, cascadeEndMs);
+            }
             observer.unobserve(entry.target);
           }
         }
@@ -271,6 +279,7 @@
           for (const ch of text) {
             const span = document.createElement('span');
             span.className = 'char';
+            if (ch === ' ') span.classList.add('space');
             span.textContent = ch;
             frag.appendChild(span);
           }
@@ -292,13 +301,14 @@
         links.forEach(link => {
           link.addEventListener('mousemove', (e) => {
             const t = e.target;
-            if (!(t instanceof Element) || !t.classList.contains('char')) return;
+            // ננקה את המצב הקודם בכל תזוזה
             link.querySelectorAll('.char').forEach(ch => ch.classList.remove('is-hover','is-near'));
+            if (!(t instanceof Element) || !t.classList.contains('char') || t.classList.contains('space')) return;
             t.classList.add('is-hover');
             const prev = t.previousElementSibling;
             const next = t.nextElementSibling;
-            if (prev && prev.classList.contains('char')) prev.classList.add('is-near');
-            if (next && next.classList.contains('char')) next.classList.add('is-near');
+            if (prev && prev.classList.contains('char') && !prev.classList.contains('space')) prev.classList.add('is-near');
+            if (next && next.classList.contains('char') && !next.classList.contains('space')) next.classList.add('is-near');
           });
           link.addEventListener('mouseleave', () => {
             link.querySelectorAll('.char').forEach(ch => ch.classList.remove('is-hover','is-near'));
@@ -327,8 +337,8 @@
 
         const hardPunct = new Set(['.', '!', '?', '…', '—']);
         const softPunct = new Set([',', ';', ':']);
-        const baseDelay = 42; // 30% יותר מהיר
-        const extraPunctDelay = 175;
+        const baseDelay = 29; // ~30% מהיר יותר מהמצב הנוכחי (היה 42)
+        const extraPunctDelay = 123; // מותאם ~30% מהיר יותר (היה 175)
 
         const typeInto = (el, fullText) => new Promise((resolve) => {
           const reserved = el.offsetHeight;
