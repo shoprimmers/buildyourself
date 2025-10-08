@@ -171,7 +171,7 @@
       <section id="about" class="section container reveal">
         <h2>Who Am I?</h2>
         <p>
-          My name is <strong>Daniel Rimmer</strong>. I’m a business owner, not a programmer. I created my own brand — <strong>Rimmer’s</strong> — where I sell handmade Italian silk ties. And I built my entire website by myself. You can visit it to see what’s possible: <a href="https://www.Rimmers.shop" target="_blank" rel="noopener">www.rimmers.shop</a>. If I could do it — without a computer degree — so can you.
+          My name is <strong>Daniel Rimmer</strong>. I’m self taught webdesigner, business owner, former manager of a branch of a multinational company from China, in Brazil. I also worked in sales of B2B business for around four years. I cuI created my own brand — <strong>Rimmer’s</strong> — where I sell handmade Italian silk ties. And I built my entire website by myself. You can visit it to see what’s possible: <a href="https://www.Rimmers.shop" target="_blank" rel="noopener">www.rimmers.shop</a>. If I could do it — without a computer degree — so can you.
         </p>
         <p>
           This program is for anyone who wants to grow his parnassah (livelihood) without wasting years or unnecessary money. It’s for photographers, craftsmen, teachers, tutors, small business owners — anyone who wants to take control of his business online.
@@ -251,6 +251,13 @@
             // Trigger typewriter when hero section reveals
             if (entry.target.classList && entry.target.classList.contains('hero')) {
               startHeroTypewriter();
+            }
+            // After the Teach section's cascade finishes, enable hover scaling
+            if (entry.target.id === 'teach') {
+              const cascadeEndMs = 3360 + 2700 + 200; // last delay + duration + buffer
+              setTimeout(() => {
+                entry.target.classList.add('interactive');
+              }, cascadeEndMs);
             }
             observer.unobserve(entry.target);
           }

@@ -232,6 +232,13 @@
             if (entry.target.classList && entry.target.classList.contains('hero')) {
               startHeroTypewriter();
             }
+            // לאחר שהקסקדה של מקטע "מה אני מלמד" מסתיימת — נאפשר הגדלה במעבר עכבר
+            if (entry.target.id === 'teach') {
+              const cascadeEndMs = 3360 + 2700 + 200; // השהיה אחרונה + משך + מרווח ביטחון
+              setTimeout(() => {
+                entry.target.classList.add('interactive');
+              }, cascadeEndMs);
+            }
             observer.unobserve(entry.target);
           }
         }

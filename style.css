@@ -264,6 +264,22 @@ p { color: var(--muted); margin: 0 0 14px; }
 
 #teach.reveal.visible .bonus-card { opacity: 1; transform: none; transition-delay: 3.36s; }
 
+/* Hover grow (post-cascade) for Teach features and bonus */
+#teach.interactive .feature-list li,
+#teach.interactive .bonus-card {
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+  will-change: transform;
+  transform-origin: center;
+}
+/* When interactive, clear the cascade delays so hover reacts immediately */
+#teach.reveal.visible.interactive .feature-list li { transition-delay: 0s; }
+#teach.reveal.visible.interactive .bonus-card { transition-delay: 0s; }
+/* Increase specificity so it overrides the cascade rules */
+#teach.reveal.visible.interactive .feature-list li:hover,
+#teach.reveal.visible.interactive .bonus-card:hover {
+  transform: scale(1.02);
+}
+
 @media (prefers-reduced-motion: reduce) {
   #teach h2,
   #teach > p,
@@ -272,7 +288,12 @@ p { color: var(--muted); margin: 0 0 14px; }
   #teach.reveal.visible h2,
   #teach.reveal.visible > p,
   #teach.reveal.visible .feature-list li,
-  #teach.reveal.visible .bonus-card { transition: none; transform: none; opacity: 1; }
+  #teach.reveal.visible .bonus-card,
+  /* Disable interactive hover transitions when reduced motion is preferred */
+  #teach.interactive .feature-list li,
+  #teach.interactive .bonus-card,
+  #teach.interactive .feature-list li:hover,
+  #teach.interactive .bonus-card:hover { transition: none; transform: none; opacity: 1; }
 }
 
 /* (creativity hero removed) */
