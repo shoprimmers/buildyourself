@@ -254,6 +254,58 @@
         }));
       }
 
+      // עוטף כל אות בלינקים של התפריט העליון כדי לאפשר אנימציה על כל אות
+      (function wrapHeaderNavLetters() {
+        const targets = document.querySelectorAll(
+          '#site-nav a[href="#story"],\
+           #site-nav a[href="#teach"],\
+           #site-nav a[href="#structure"],\
+           #site-nav a[href="#why"],\
+           #site-nav a[href="#about"],\
+           #site-nav a[href="#guarantee"]'
+        );
+        targets.forEach(a => {
+          if (a.dataset.charsWrapped === 'true') return;
+          const text = a.textContent;
+          const frag = document.createDocumentFragment();
+          for (const ch of text) {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.textContent = ch;
+            frag.appendChild(span);
+          }
+          a.textContent = '';
+          a.appendChild(frag);
+          a.dataset.charsWrapped = 'true';
+        });
+      })();
+
+      // אפקט "גל" על אותיות התפריט: האות שמתחת לסמן = 1.10, שכנות = 1.05
+      (function initHeaderNavWave() {
+        const selector = '#site-nav a[href="#story"],\
+                         #site-nav a[href="#teach"],\
+                         #site-nav a[href="#structure"],\
+                         #site-nav a[href="#why"],\
+                         #site-nav a[href="#about"],\
+                         #site-nav a[href="#guarantee"]';
+        const links = document.querySelectorAll(selector);
+        links.forEach(link => {
+          link.addEventListener('mousemove', (e) => {
+            const t = e.target;
+            if (!(t instanceof Element) || !t.classList.contains('char')) return;
+            link.querySelectorAll('.char').forEach(ch => ch.classList.remove('is-hover','is-near'));
+            t.classList.add('is-hover');
+            const prev = t.previousElementSibling;
+            const next = t.nextElementSibling;
+            if (prev && prev.classList.contains('char')) prev.classList.add('is-near');
+            if (next && next.classList.contains('char')) next.classList.add('is-near');
+          });
+          link.addEventListener('mouseleave', () => {
+            link.querySelectorAll('.char').forEach(ch => ch.classList.remove('is-hover','is-near'));
+          });
+        });
+      })();
+
       // (הוסרה התנהגות שקיפות כותרת עליונה — חזרה למקור)
 
       // אפקט הקלדה לכותרת הראשית <h1> ולמשפט שאחריה, ואז הצגת הכפתורים

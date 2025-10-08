@@ -111,25 +111,46 @@ p { color: var(--muted); margin: 0 0 14px; }
 .nav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
 .nav a:hover { color: var(--text); }
 
-/* Header nav: subtle 5% grow on specific links (EN + HE) */
+/* Header nav: per-letter hover grow on specific links (EN + HE) */
 .nav a[href="#story"],
 .nav a[href="#teach"],
 .nav a[href="#structure"],
 .nav a[href="#why"],
 .nav a[href="#about"],
-.nav a[href="#guarantee"] {
-  display: inline-block; /* needed for transform */
-  transform-origin: center; 
-  transition: transform .12s ease, color .2s ease; /* keep existing hover color */
+.nav a[href="#guarantee"] { display: inline-block; }
+
+/* Per-letter hover grow inside those same links */
+.nav a[href="#story"] .char,
+.nav a[href="#teach"] .char,
+.nav a[href="#structure"] .char,
+.nav a[href="#why"] .char,
+.nav a[href="#about"] .char,
+.nav a[href="#guarantee"] .char {
+  display: inline-block; /* allow transform per character */
+  transition: transform .12s ease;
+  transform-origin: center;
 }
-.nav a[href="#story"]:hover,
-.nav a[href="#teach"]:hover,
-.nav a[href="#structure"]:hover,
-.nav a[href="#why"]:hover,
-.nav a[href="#about"]:hover,
-.nav a[href="#guarantee"]:hover {
-  transform: scale(1.05);
-}
+.nav a[href="#story"] .char:hover,
+.nav a[href="#teach"] .char:hover,
+.nav a[href="#structure"] .char:hover,
+.nav a[href="#why"] .char:hover,
+.nav a[href="#about"] .char:hover,
+.nav a[href="#guarantee"] .char:hover { transform: scale(1.10); }
+
+/* Wave effect classes: set by JS on hover target and its neighbors */
+.nav a[href="#story"] .char.is-hover,
+.nav a[href="#teach"] .char.is-hover,
+.nav a[href="#structure"] .char.is-hover,
+.nav a[href="#why"] .char.is-hover,
+.nav a[href="#about"] .char.is-hover,
+.nav a[href="#guarantee"] .char.is-hover { transform: scale(1.10); }
+
+.nav a[href="#story"] .char.is-near,
+.nav a[href="#teach"] .char.is-near,
+.nav a[href="#structure"] .char.is-near,
+.nav a[href="#why"] .char.is-near,
+.nav a[href="#about"] .char.is-near,
+.nav a[href="#guarantee"] .char.is-near { transform: scale(1.25); }
 
 /* Language switch */
 .lang-switch { display: inline-flex; align-items: center; gap: 8px; margin-inline-start: 6px; }
