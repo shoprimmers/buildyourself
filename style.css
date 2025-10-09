@@ -377,6 +377,8 @@ p { color: var(--muted); margin: 0 0 14px; }
   .nav a { padding: 10px 12px; border-radius: 8px; font-size: 15px; }
   .nav a:hover { background: rgba(255,255,255,0.04); }
   .nav .btn { width: 100%; }
+  /* Mobile: shrink hero height so first background video ends shortly after CTAs */
+  .hero { min-height: 0; padding-bottom: 28px; }
 }
 
 @media (max-width: 640px) {
